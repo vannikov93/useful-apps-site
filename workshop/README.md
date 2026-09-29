@@ -14,3 +14,8 @@ This directory contains the operational self-improvement layer for the Useful Ap
 Experience → structured evidence → causal calibration → contextual recall → minimum reversible change → real validation → action closeout → appropriate promotion → verified effect.
 
 Do not add additional learning infrastructure until real project data demonstrates a retrieval, scale, or automation bottleneck.
+
+
+## Storage boundary
+
+Operational records are private by default. This public repository stores only the engine, sanitized templates, and reusable patterns that are safe to expose. Real project incidents, raw logs, payment/auth/security findings, and unpublished blockers belong in a private project source of truth.
