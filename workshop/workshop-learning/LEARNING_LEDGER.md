@@ -89,140 +89,140 @@ links:
 
 ---
 
+---
+
 # ACTIVE LEARNING RECORDS
 
-## FAST CAPTURE — Nexora Cleaner
+## CONTEXT CORRECTION — Nexora Cleaner
 
-### NXR-20260929-001 — Payment flow not verified
+### NXR-20260929-000 — Cross-project context contamination corrected
 
 ```yaml
-id: NXR-20260929-001
+id: NXR-20260929-000
 date: 2026-09-29
 app: Nexora Cleaner
-signal_type: INCIDENT
-context: Android monetization / Pro purchase flow
-observation: User reports that the payment system is not working. No successful official sandbox/test purchase and restore evidence is currently recorded.
-evidence_link: pending — code/config/test evidence not yet mirrored into this repository
-impact: Release blocker for a monetized production build; Premium entitlement cannot be treated as READY.
-status: CAPTURED
+signal_type: CONTEXT_CORRECTION
+context: Project identity / source-of-truth correction
+observation: Earlier NXR records were created by renaming records that originated from a different Bolt/Cleana project. Those records are not valid evidence for Nexora Cleaner and must not be used for recall, diagnosis, or promotion.
+evidence_link:
+  - user correction: Nexora Cleaner was not developed in Bolt
+  - Floot project lookup confirms a separate project named Nexora Cleaner
+impact: Prevents false transfer of payment/auth/publication conclusions between unrelated projects.
+status: VALIDATED
 ```
 
-### NXR-20260929-002 — One-tap Google auth requirement gap
+Knowledge rule:
 
-```yaml
-id: NXR-20260929-002
-date: 2026-09-29
-app: Nexora Cleaner
-signal_type: FRICTION
-context: Auth / account onboarding
-observation: The current build plan explicitly included Bolt Database email/password auth, while the required product standard calls for a fast Google sign-in path when accounts are useful. No verified Google sign-in implementation is currently recorded.
-evidence_link: pending — implementation evidence not yet mirrored into this repository
-impact: User-friction and requirements gap; may affect onboarding and account recovery/sync design.
-status: CAPTURED
-```
+```text
+PROJECT NAME MATCH
+!=
+SHARED IMPLEMENTATION HISTORY
 
-### NXR-20260929-003 — Publication attempt blocked
-
-```yaml
-id: NXR-20260929-003
-date: 2026-09-29
-app: Nexora Cleaner
-signal_type: INCIDENT
-context: Publication / release workflow
-observation: User attempted to publish the current app and the publishing flow did not complete. The exact platform error and its cause are not yet captured as repository evidence.
-evidence_link: pending — exact error/log/screenshot classification required
-impact: Release blocker until the concrete failure is identified.
-status: CAPTURED
+Before transferring a lesson or incident between projects:
+verify project identity + platform + implementation context.
 ```
 
 ---
 
-## MATERIAL CANDIDATE — NXR-20260929-001
+## VERIFIED CURRENT STATE — Nexora Cleaner
+
+### NXR-20260929-001 — Floot project exists and is pre-publication
 
 ```yaml
 id: NXR-20260929-001
 date: 2026-09-29
-status: CANDIDATE
+status: VALIDATED
 scope: PROJECT
 app: Nexora Cleaner
-signal_type: INCIDENT
-severity: BLOCKER
+signal_type: PROJECT_STATE
+severity: INFO
 
 context:
-  domain: payments
-  task_type: digital premium purchase
+  domain: project-state
+  task_type: release readiness
   app_family: Android utility / cleaner
-  component: payment + entitlement flow
-  stack: current Nexora Cleaner build; exact provider/billing implementation to verify
+  component: Floot project
+  stack: Floot
   environment: pre-production
   dependencies:
-    - payment provider / Google Play Billing path to verify
-    - entitlement state implementation to verify
-  version_range: current build
-  applies_when: Nexora Cleaner monetization flow
-  do_not_apply_when: none defined yet
+    - Floot project 2daadaa2-40b3-4b9c-bd06-fb4aea955ddf
+  version_range: current state on 2026-09-29
+  applies_when: reasoning about current Nexora Cleaner release state
+  do_not_apply_when: other Bolt/Cleana projects
 
 epistemics:
-  claim_type: OBSERVATION
-  validation_level: REASONED
+  claim_type: FACT
+  validation_level: TESTED
   evidence:
-    - user reports payment flow is not working
-    - no recorded successful official test purchase + restore result
+    - Floot list_projects returned project name Nexora Cleaner
+    - Floot get_publish_status returned published=false
+    - Floot get_publish_status returned mobileBuild=null
+    - Floot get_publish_status returned native builds used=0, remaining=2, limit=2
+    - Floot get_publish_status returned plan=free
   limitations:
-    - code has not yet been inspected in this learning cycle
-    - provider configuration has not yet been inspected
-    - no runtime/payment logs are attached here
+    - code-level inspection is temporarily unavailable because the current Floot daily build-action budget is exhausted
+    - payment/auth implementation details are therefore not revalidated in this record
 
 causality:
-  trigger: unknown
-  contributing_factors: unknown
-  hypothesis: CAUSE_UNCONFIRMED
-  alternative_explanations:
-    - payment UI may still be mock or incomplete
-    - billing/provider configuration may be missing or invalid
-    - product/plan identifiers may not match provider configuration
-    - purchase result may not be connected to entitlement activation
-    - restore/lifecycle handling may be incomplete
-    - publication/runtime environment may not support the current payment route
-  decisive_test:
-    - inspect actual payment and entitlement implementation
-    - identify the authoritative billing route
-    - inspect provider/product configuration
-    - run an official sandbox/test purchase
-    - verify entitlement activation
-    - verify Restore Purchases / reinstall path
+  trigger: none
+  contributing_factors: none
+  hypothesis: none
+  alternative_explanations: []
+  decisive_test: not applicable
 
 knowledge:
-  lesson: pending — do not infer root cause before implementation/config/test evidence
-  reusable_pattern: pending
-  anti_pattern: pending
-  guardrail: existing workshop rule remains applicable — Payments are not READY without a real official test purchase and restore verification
+  lesson: Use Floot project state as the source of truth for Nexora Cleaner; do not inherit Bolt project facts.
+  reusable_pattern: Verify project identity/platform before reusing cross-project incidents.
+  anti_pattern: Renaming an incident from one project and treating it as evidence for another.
+  guardrail: Context fingerprint must include project + platform before recall/promotion.
 
 relations:
-  supports: []
+  supports:
+    - NXR-20260929-000
   conflicts_with: []
-  supersedes: []
+  supersedes:
+    - invalidated prior NXR-20260929-001 payment record
+    - invalidated prior NXR-20260929-002 auth record
+    - invalidated prior NXR-20260929-003 publication record
   depends_on:
     - workshop/13_CONTINUOUS_LEARNING_SELF_IMPROVEMENT_ENGINE.md
 
 effect:
-  expected: identify the real failure mechanism and produce the minimum verified fix
-  actual: pending
+  expected: future analysis stays attached to the correct Nexora Cleaner implementation.
+  actual: project identity and release state corrected.
 
 lifecycle:
   stale_triggers:
-    - payment implementation changed
-    - billing provider changed
-    - product configuration changed
+    - Nexora Cleaner is published
+    - a native mobile build is started/completed
+    - project platform changes
   reopen_triggers:
-    - sandbox purchase fails
-    - entitlement does not persist
-    - restore/reinstall/new-device path fails
+    - conflicting project identity evidence
   last_validated: 2026-09-29
 
 links:
-  tests: pending
-  releases: pending
+  tests:
+    - Floot list_projects
+    - Floot get_publish_status
+  releases: none
   incidents:
-    - NXR-20260929-001
+    - NXR-20260929-000
 ```
+
+---
+
+## OPEN UNKNOWNS — require direct Nexora code inspection
+
+The following are intentionally **not** treated as incidents or facts until the actual Nexora Cleaner code/configuration is inspected:
+
+```text
+PAYMENT IMPLEMENTATION STATUS
+AUTH IMPLEMENTATION STATUS
+GOOGLE SIGN-IN STATUS
+REVENUECAT / GOOGLE PLAY BILLING CONFIGURATION
+RESTORE PURCHASES STATUS
+ANDROID CLEANER NATIVE BRIDGE STATUS
+PUBLICATION BLOCKERS BEYOND "not yet published"
+```
+
+These must be resolved from Nexora Cleaner itself, not from the separate Bolt project.
