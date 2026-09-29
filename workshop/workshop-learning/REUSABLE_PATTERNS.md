@@ -87,3 +87,35 @@ stale_triggers:
 supersedes:
 last_validated: 2026-09-29
 ```
+
+
+---
+
+## PATTERN-CURRENT-EVIDENCE-OVER-MEMORY
+
+```yaml
+id: PATTERN-CURRENT-EVIDENCE-OVER-MEMORY
+title: Current source-of-truth evidence supersedes historical memory
+scope: GLOBAL
+validation_level: TESTED
+applies_when: prior summaries, remembered project state, old test results, or historical decisions are reused
+do_not_apply_when: the historical record is itself version-bound to the exact current artifact and independently verified unchanged
+dependencies:
+  - identifiable current source of truth
+  - timestamp/version context
+version_range: current
+pattern:
+  - recover historical state to avoid losing useful context
+  - label it historical rather than current
+  - revalidate material claims against the live source of truth before acting
+  - let current evidence supersede older summaries
+guardrails:
+  - status vocabulary distinguishes CURRENT / HISTORICAL / REVALIDATION_REQUIRED
+  - old test PASS never implies current PASS after relevant changes
+known_tradeoffs:
+  - adds targeted revalidation for material claims
+stale_triggers:
+  - source-of-truth or versioning model changes
+supersedes:
+last_validated: 2026-09-29
+```
