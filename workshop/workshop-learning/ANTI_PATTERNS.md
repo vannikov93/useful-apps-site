@@ -66,3 +66,26 @@ stale_triggers:
   - none; revalidate if project identity model changes
 last_validated: 2026-09-29
 ```
+
+
+---
+
+## ANTI-PATTERN-MEMORY-AS-CURRENT-STATE
+
+```yaml
+id: ANTI-PATTERN-MEMORY-AS-CURRENT-STATE
+title: Treat historical project memory as current implementation truth
+scope: GLOBAL
+evidence:
+  - historical summaries may remain correct, become stale, or conflict with later implementation
+  - old tests validate an older state, not necessarily the current artifact
+applies_when: making implementation/release decisions from remembered or summarized prior work
+do_not_apply_when: the current artifact/version has been directly verified unchanged
+failure_mechanism: useful historical context is silently upgraded into current fact without revalidation
+observed_consequence: stale diagnosis, incorrect blockers, unnecessary fixes, or false readiness claims
+safer_alternative: label historical evidence explicitly and revalidate material claims against the current source of truth
+exceptions: []
+stale_triggers:
+  - none; re-evaluate only if state/version model changes
+last_validated: 2026-09-29
+```
