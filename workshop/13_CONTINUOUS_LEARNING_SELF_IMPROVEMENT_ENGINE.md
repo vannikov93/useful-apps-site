@@ -998,3 +998,67 @@ SUPPORTS
 CONFLICTS_WITH
 SUPERSEDES
 DEPENDS_ON
+
+---
+
+# 46. STORAGE TRUST BOUNDARY
+
+Learning memory is only useful if recording evidence does not create a new security or privacy risk.
+
+Classify every destination before writing operational knowledge:
+
+```text
+PUBLIC
+→ standards
+→ sanitized templates
+→ non-sensitive reusable patterns
+→ intentionally public evidence
+
+PRIVATE
+→ real incidents
+→ raw logs
+→ unpublished blockers
+→ auth/payment/security findings
+→ internal architecture details
+→ user-related evidence
+→ sensitive operational context
+
+SECRET STORE ONLY
+→ tokens
+→ passwords
+→ API keys
+→ private keys
+→ credentials
+→ production secrets
+```
+
+Rules:
+
+1. Public documentation and private operational memory are separate concerns.
+2. A useful incident record is not automatically safe to publish.
+3. Secrets never belong in Learning Ledger, even in a private repository when a purpose-built secret store exists.
+4. Before promoting a private lesson to public reusable knowledge:
+   - remove project/user identifiers when unnecessary;
+   - remove raw logs and credentials;
+   - remove exploit-enabling implementation detail unless intentionally public;
+   - preserve only the reusable mechanism, evidence level, applicability and guardrail.
+5. Repository visibility is part of the context fingerprint.
+6. If storage visibility changes from private to public, all operational learning records become `REVIEW_REQUIRED` before exposure.
+
+Preferred model:
+
+```text
+PRIVATE INCIDENT
+→ VALIDATED LESSON
+→ SANITIZE
+→ PUBLIC REUSABLE PATTERN
+```
+
+Never:
+
+```text
+RAW INCIDENT
+→ PUBLIC MEMORY
+```
+
+This boundary is a guardrail against learning infrastructure becoming a data-leak channel.
