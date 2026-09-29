@@ -54,3 +54,36 @@ stale_triggers:
 supersedes:
 last_validated: 2026-09-29
 ```
+
+
+---
+
+## PATTERN-PROJECT-IDENTITY-BEFORE-RECALL
+
+```yaml
+id: PATTERN-PROJECT-IDENTITY-BEFORE-RECALL
+title: Verify project identity before applying remembered lessons
+scope: GLOBAL
+validation_level: TESTED
+applies_when: retrieving incidents, lessons, implementation assumptions, or release state from prior work
+do_not_apply_when: the referenced evidence is already cryptographically/version-bound to the same exact project state
+dependencies:
+  - project identifier
+  - platform/source-of-truth identifier
+  - implementation context
+version_range: current
+pattern:
+  - identify the exact project/app first
+  - verify its platform and source of truth
+  - verify that remembered evidence belongs to that project
+  - only then retrieve/apply project-specific lessons
+guardrails:
+  - context fingerprint includes project + platform + environment
+  - name similarity is never treated as identity
+known_tradeoffs:
+  - adds one small identity check before reuse
+stale_triggers:
+  - project migration, rename, fork, clone, or platform change
+supersedes:
+last_validated: 2026-09-29
+```
