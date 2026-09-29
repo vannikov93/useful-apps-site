@@ -91,14 +91,14 @@ links:
 
 # ACTIVE LEARNING RECORDS
 
-## FAST CAPTURE — Cleana
+## FAST CAPTURE — Nexora Cleaner
 
-### CLN-20260929-001 — Payment flow not verified
+### NXR-20260929-001 — Payment flow not verified
 
 ```yaml
-id: CLN-20260929-001
+id: NXR-20260929-001
 date: 2026-09-29
-app: Cleana
+app: Nexora Cleaner
 signal_type: INCIDENT
 context: Android monetization / Pro purchase flow
 observation: User reports that the payment system is not working. No successful official sandbox/test purchase and restore evidence is currently recorded.
@@ -107,12 +107,12 @@ impact: Release blocker for a monetized production build; Premium entitlement ca
 status: CAPTURED
 ```
 
-### CLN-20260929-002 — One-tap Google auth requirement gap
+### NXR-20260929-002 — One-tap Google auth requirement gap
 
 ```yaml
-id: CLN-20260929-002
+id: NXR-20260929-002
 date: 2026-09-29
-app: Cleana
+app: Nexora Cleaner
 signal_type: FRICTION
 context: Auth / account onboarding
 observation: The current build plan explicitly included Bolt Database email/password auth, while the required product standard calls for a fast Google sign-in path when accounts are useful. No verified Google sign-in implementation is currently recorded.
@@ -121,12 +121,12 @@ impact: User-friction and requirements gap; may affect onboarding and account re
 status: CAPTURED
 ```
 
-### CLN-20260929-003 — Publication attempt blocked
+### NXR-20260929-003 — Publication attempt blocked
 
 ```yaml
-id: CLN-20260929-003
+id: NXR-20260929-003
 date: 2026-09-29
-app: Cleana
+app: Nexora Cleaner
 signal_type: INCIDENT
 context: Publication / release workflow
 observation: User attempted to publish the current app and the publishing flow did not complete. The exact platform error and its cause are not yet captured as repository evidence.
@@ -137,14 +137,14 @@ status: CAPTURED
 
 ---
 
-## MATERIAL CANDIDATE — CLN-20260929-001
+## MATERIAL CANDIDATE — NXR-20260929-001
 
 ```yaml
-id: CLN-20260929-001
+id: NXR-20260929-001
 date: 2026-09-29
 status: CANDIDATE
 scope: PROJECT
-app: Cleana
+app: Nexora Cleaner
 signal_type: INCIDENT
 severity: BLOCKER
 
@@ -153,13 +153,13 @@ context:
   task_type: digital premium purchase
   app_family: Android utility / cleaner
   component: payment + entitlement flow
-  stack: current Cleana build; exact provider/billing implementation to verify
+  stack: current Nexora Cleaner build; exact provider/billing implementation to verify
   environment: pre-production
   dependencies:
     - payment provider / Google Play Billing path to verify
     - entitlement state implementation to verify
   version_range: current build
-  applies_when: Cleana monetization flow
+  applies_when: Nexora Cleaner monetization flow
   do_not_apply_when: none defined yet
 
 epistemics:
@@ -224,5 +224,5 @@ links:
   tests: pending
   releases: pending
   incidents:
-    - CLN-20260929-001
+    - NXR-20260929-001
 ```
